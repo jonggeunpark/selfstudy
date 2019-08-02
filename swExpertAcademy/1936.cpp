@@ -1,18 +1,33 @@
 //swExpertAcademy
 //2019
-//Á¤´ä
 
 #include <iostream>
 using namespace std;
 
 int main()
 {
-	int A, B;
+	int a, b;
+	cin >> a >> b;
 
-	cin >> A >> B;
-
-	if (A % 3 == (B + 1) % 3)
-		cout << "A";
-	else if (B % 3 == (A + 1) % 3)
-		cout << "B";
+	if (a == 1)
+	{
+		if (b == 2)
+			cout << "B";
+		else if (b == 3)
+			cout << "A";
+	}
+	else if (a == 2)
+	{
+		if (b == 1)
+			cout << "A";
+		else if (b == 3)
+			cout << "B";
+	}
+	else if (a == 3)
+	{
+		if (b == 1)
+			cout << "B";
+		else if (b == 2)
+			cout << "A";
+	}
 }

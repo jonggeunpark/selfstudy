@@ -1,6 +1,5 @@
 ﻿//swExpertAcademy
 //1545
-//정답
 
 #include <iostream>
 using namespace std;
@@ -14,4 +13,6 @@ int main ()
 	{
 		cout << i << " ";
 	}
+
+	return 0;
 }

@@ -1,6 +1,5 @@
 //swExpertAcademy
 //2019
-//Á¤´ä
 
 #include <iostream>
 #include <math.h>
@@ -15,4 +14,6 @@ int main()
 	{
 		cout << pow(2, i) << " " ;
 	}
+
+	return 0;
 }

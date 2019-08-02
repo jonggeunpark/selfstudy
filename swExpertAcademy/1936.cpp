@@ -1,5 +1,5 @@
 //swExpertAcademy
-//2019
+//1936
 
 #include <iostream>
 using namespace std;
@@ -30,4 +30,6 @@ int main()
 		else if (b == 2)
 			cout << "A";
 	}
+
+	return 0;
 }

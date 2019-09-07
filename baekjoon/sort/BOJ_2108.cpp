@@ -1,22 +1,22 @@
 //Baekjoon online judge
 //2108
+//계수 정렬
 
 #include <iostream>
 #include <vector>
+#include <math.h>
 using namespace std;
 
 void countingSort(int arr[],int sortedArr[],int count[],int n)
 {
 	//누적합
 	for (int i = 1; i < 8001; i++)
-	{
 		count[i] += count[i - 1];
-	}
 
 	for (int i = n-1; i >= 0; i--)
 	{
-		sortedArr[count[arr[i]-4000]] = arr[i];
-		count[arr[i] - 4000]--;
+		count[arr[i] + 4000]--;
+		sortedArr[count[arr[i]+4000]] = arr[i];
 	}
 }
 
@@ -74,11 +74,10 @@ int main()
 	}
 
 	mode = getMode(count);// 최빈값 구하기 
+	countingSort(arr,sortedArr,count,n); //계수 정렬
+	median = sortedArr[n / 2]; // 중앙값 구하기
 
-	countingSort(arr,sortedArr,count,n);
-	median = sortedArr[n / 2];
-
-	cout << sum / n << "\n";
+	cout << floor(sum / n + 0.5) << "\n";
 	cout << median << "\n";
 	cout << mode << "\n";
 	cout << max - min;

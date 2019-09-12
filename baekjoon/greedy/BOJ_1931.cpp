@@ -3,43 +3,19 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
-int selectFastMeeting(vector<pair<int,int>> &v)
+bool cmp(const pair<int,int> &a, const pair<int,int> &b)
 {
-	if (v.empty() == true)
-		return -1;
-
-	int min=v[0].second;
-	int index = 0;
-	for (int i = 1; i < v.size(); i++)
+	if (a.second < b.second)
+		return true;
+	else if (a.second == b.second)
 	{
-		if (v[i].second == min)
-		{
-			if (v[index].first > v[i].first)
-			index = i;
-		}
-		if (v[i].second < min)
-		{
-			min = v[i].second;
-			index = i;
-		}
+		return a.first < b.first;
 	}
-	return index;
-}
-
-void deleteElseMeeting(int index, vector<pair<int, int>> &v)
-{
-	int end = v[index].second;
-	v.erase(v.begin() + index);
-
-	for (int i = 0; i < v.size();)
-	{
-		if (v[i].first < end)
-			v.erase(v.begin() + i);
-		else
-			i++;
-	}
+	else
+		return false;
 }
 
 int main()
@@ -48,8 +24,6 @@ int main()
 	ios::sync_with_stdio(false);
 
 	int t, a, b;
-	int count = 0;
-	int meetIndex = 0;
 	vector<pair<int,int>> v;
 
 	cin >> t;
@@ -59,11 +33,20 @@ int main()
 		v.push_back(pair<int, int>(a, b));
 	}
 
-	while (v.empty() != true)
+	sort(v.begin(), v.end(), cmp);
+
+	int count = 1;
+	int lastTime = v[0].second;
+
+	for (int i = 1; i < v.size(); i++)
 	{
-		meetIndex = selectFastMeeting(v); // 가장 빨리 끝나는 회의 찾기
-		deleteElseMeeting(meetIndex,v); // 가장 빨리 끝나는 회의와 겹치는 회의 제거
-		count++;
+		if (v[i].first < lastTime)
+			continue;
+		else if (v[i].second >= lastTime)
+		{
+			lastTime = v[i].second;
+			count++;
+		}
 	}
 
 	cout << count;

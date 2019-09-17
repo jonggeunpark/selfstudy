@@ -27,15 +27,9 @@ int main()
 		score[i] = tmp;
 	}
 	fill_n(sum, n+1, -1);
-	score[0] = 0;
-	sum[0] = score[0];
 	sum[1] = score[1];
-	/*
-	if (score[1] > score[3])
-		sum[2] = score[1] + score[2];
-	else
-		sum[2] = score[2];
-	*/
+	sum[2] = score[1] + score[2];
+	sum[3] = max(score[1] + score[3], score[2] + score[3]);
 
 	getMaxScore(n);
 
